@@ -28,7 +28,7 @@ app.use("/ranking", rankingRoutes);
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Добро пожаловать",
+    message: "Добро пожаловать в API баскетбольных команд",
     endpoints: {
       auth: {
         "POST /auth/register": "Регистрация",
@@ -74,9 +74,16 @@ async function startServer() {
 
     app.listen(PORT, () => {
       console.log(`Сервер запущен на порту ${PORT}`);
+      console.log(`API доступно по адресу: http://localhost:${PORT}`);
+      console.log("\nДоступные endpoints:");
+      console.log("POST /auth/register - Регистрация");
+      console.log("POST /auth/login - Авторизация");
+      console.log("GET  /players - Список игроков");
+      console.log("POST /team - Создать команду");
+      console.log("GET  /ranking - Рейтинг команд");
     });
   } catch (error) {
-    console.error("❌ Ошибка при запуске сервера:", error);
+    console.error("Ошибка при запуске сервера:", error);
     process.exit(1);
   }
 }

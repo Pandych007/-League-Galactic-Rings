@@ -20,12 +20,33 @@ const Player = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    height: {
+    podboru: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+    peredachu: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+    folv: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+    perexvat: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+    poteri: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+    blokchotu: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+    points: {
       type: DataTypes.DECIMAL(3, 2),
       defaultValue: 0,
-      validate: {
-        min: 1.6,
-      },
     },
     is_active: {
       type: DataTypes.BOOLEAN,

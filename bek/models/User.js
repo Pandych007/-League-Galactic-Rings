@@ -53,7 +53,7 @@ const User = sequelize.define(
   }
 );
 
-User.prototype.validatePasssword = function (password) {
+User.prototype.validatePassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
 
