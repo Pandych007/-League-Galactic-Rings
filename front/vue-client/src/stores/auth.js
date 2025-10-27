@@ -4,7 +4,7 @@ import api from "../services/api";
 
 export const useAuthStore = defineStore("auth", () => {
   const user = ref(JSON.parse(localStorage.getItem("user")) || null);
-  const token = ref(JSON.parse(localStorage.getItem("token")) || null);
+  const token = ref(localStorage.getItem("token") || null);
 
   const isAuthenticated = computed(() => !!token.value);
   const isAdmin = computed(() => user.value?.role === "admin");
@@ -15,7 +15,9 @@ export const useAuthStore = defineStore("auth", () => {
         email,
         password,
       });
+
       const { user: userData, token: tokenData } = response.data;
+
       user.value = userData;
       token.value = tokenData;
 
@@ -24,7 +26,7 @@ export const useAuthStore = defineStore("auth", () => {
 
       return response.data;
     } catch (error) {
-      throw error.response?.data?.error || "Шибка авторизации";
+      throw error.response?.data?.error || "Ошибка авторизации";
     }
   };
 
@@ -37,10 +39,13 @@ export const useAuthStore = defineStore("auth", () => {
       });
 
       const { user: userData, token: tokenData } = response.data;
+
       user.value = userData;
       token.value = tokenData;
+
       localStorage.setItem("user", JSON.stringify(userData));
       localStorage.setItem("token", tokenData);
+
       return response.data;
     } catch (error) {
       throw error.response?.data?.error || "Ошибка регистрации";
@@ -50,6 +55,7 @@ export const useAuthStore = defineStore("auth", () => {
   const logout = () => {
     user.value = null;
     token.value = null;
+
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   };
@@ -57,7 +63,7 @@ export const useAuthStore = defineStore("auth", () => {
   const getProfile = async () => {
     try {
       const response = await api.get("/auth/me");
-      user.value = response.data.value;
+      user.value = response.data.user;
       localStorage.setItem("user", JSON.stringify(response.data.user));
       return response.data;
     } catch (error) {
@@ -68,12 +74,13 @@ export const useAuthStore = defineStore("auth", () => {
   const syncAuthState = () => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
+
     if (storedUser && storedToken) {
       user.value = JSON.parse(storedUser);
       token.value = storedToken;
     } else {
       user.value = null;
-      user.token = null;
+      token.value = null;
     }
   };
 

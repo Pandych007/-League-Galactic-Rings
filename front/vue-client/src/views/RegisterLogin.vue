@@ -1,36 +1,147 @@
 <template>
   <div>
     <h1>🏀 Fantasy Basket</h1>
-    <div class="form-container" id="formBox">
+    <div class="form-container" id="formBox" :class="{ flipped: isFlipped }">
       <!-- Регистрация -->
       <div class="form register-form">
-        <h2>Регистрация</h2>
-        <input type="text" placeholder="Логин" />
-        <input type="text" placeholder="Имя" />
-        <input type="password" placeholder="Пароль" />
-        <input type="password" placeholder="Повторите пароль" />
-        <button>Зарегистрироваться</button>
-        <p>Есть аккаунт? <a id="goLogin">Войти</a></p>
+        <form @submit.prevent="handleRegister">
+          <h2>Регистрация</h2>
+          <input type="email" v-model="form.email" placeholder="email" />
+          <input type="text" v-model="form.name" placeholder="Имя" />
+          <input type="password" v-model="form.password" placeholder="Пароль" />
+          <input
+            type="password"
+            v-model="form.confirmPassword"
+            placeholder="Повторите пароль"
+          />
+          <button type="submit" :disabled="loading">
+            {{ loading ? "Регистрации..." : "Зарегистрироваться" }}
+          </button>
+          <div v-if="error" class="error-message">
+            {{ error }}
+          </div>
+          <p>
+            Есть аккаунт? <a id="goLogin" @click="isFlipped = true">Войти</a>
+          </p>
+        </form>
       </div>
 
       <!-- Вход -->
-      <div class="form login-form">
-        <h2>Вход</h2>
-        <input type="text" placeholder="Логин" />
-        <input type="password" placeholder="Пароль" />
-        <button>Войти</button>
-        <p>Нет аккаунта? <a id="goRegister">Зарегистрироваться</a></p>
-        <p style="font-size: 13px; margin-top: 10px; color: #888">
-          Для режима тренера: <strong>coach@team</strong> /
-          <strong>coach</strong>
-        </p>
+      <div class="form login-form" :class="{ flipped: !isFlipped }">
+        <form @submit.prevent="handleLogin">
+          <h2>Вход</h2>
+          <input
+            type="email"
+            v-model="form_auth.email"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            v-model="form_auth.password"
+            placeholder="Пароль"
+            required
+          />
+          <button type="submit" :disabled="loading_auth">
+            {{ loading_auth ? "Вход..." : "Войти" }}
+          </button>
+          <div class="error-message" v-if="error_auth">
+            {{ error_auth }}
+          </div>
+          <p>
+            Нет аккаунта?
+            <a id="goRegister" @click="isFlipped = false">Зарегистрироваться</a>
+          </p>
+          <p style="font-size: 13px; margin-top: 10px; color: #888">
+            Для режима тренера: <strong>coach@team</strong> /
+            <strong>coach</strong>
+          </p>
+        </form>
       </div>
     </div>
   </div>
 </template>
+<script setup>
+//const formBox = document.getElementById("formBox");
+//const goLogin = document.getElementById("goLogin");
+//const goRegister = document.getElementById("goRegister");
 
-<style>
-/* === ОСНОВА === */
+//goLogin.addEventListener("click", () => formBox.classList.add("flipped"));
+//goRegister.addEventListener("click", () => formBox.classList.remove("flipped"));
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "../stores/auth";
+
+const router = useRouter();
+const authStore = useAuthStore();
+
+const isFlipped = ref(false);
+
+const form = ref({
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+});
+
+const form_auth = ref({
+  email: "",
+  password: "",
+});
+const toggleForm = () => {};
+
+const loading = ref(false);
+const loading_auth = ref(false);
+
+const error = ref("");
+const error_auth = ref("");
+
+const handleRegister = async () => {
+  if (loading.value) return;
+  if (form.value.password !== form.value.confirmPassword) {
+    error.value = "Пароли не совпадают";
+    return;
+  }
+
+  if (form.value.password.length < 6) {
+    error.value = "Пароль должен содержать минимум 6 символов";
+    return;
+  }
+
+  loading.value = true;
+  error.value = "";
+  try {
+    await authStore.register(
+      form.value.name,
+      form.value.email,
+      form.value.password
+    );
+    router.push("/");
+  } catch (err) {
+    error.value = err;
+  } finally {
+    loading.value = false;
+  }
+
+  //запрос к серверу на регистрацию
+};
+
+const handleLogin = async () => {
+  if (loading_auth.value) return;
+  loading.value = true;
+  error.value = "";
+
+  try {
+    await authStore.login(form.value.email, form.value.password);
+    router.push("/");
+  } catch (err) {
+    error_auth.value = err;
+  } finally {
+    loading.value = false;
+  }
+};
+</script>
+<style scoped>
 body {
   margin: 0;
   height: 100vh;
@@ -157,12 +268,3 @@ h1 {
   animation: tilt 3s ease-in-out infinite;
 }
 </style>
-
-<script>
-const formBox = document.getElementById("formBox");
-const goLogin = document.getElementById("goLogin");
-const goRegister = document.getElementById("goRegister");
-
-goLogin.addEventListener("click", () => formBox.classList.add("flipped"));
-goRegister.addEventListener("click", () => formBox.classList.remove("flipped"));
-</script>

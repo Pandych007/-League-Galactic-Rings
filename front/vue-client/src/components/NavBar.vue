@@ -1,10 +1,10 @@
 <template>
-  <nav>
-    <div>
-      <router-link to="/login"> Войти </router-link>
-      <router-link to="/register"> Регистрация </router-link>
-    </div>
-  </nav>
+  <template v-if="isAuthenticated">
+    <button @click="logout">Выйти ({{ user?.name }})</button>
+  </template>
+  <template v-else>
+    <router-link to="/register">Регистрация</router-link>
+  </template>
 </template>
 <script setup>
 import { useAuthStore } from "../stores/auth";
