@@ -1,62 +1,70 @@
 <template>
-  <div>
-    <h1>🏀 Fantasy Basket</h1>
-    <div class="form-container" id="formBox" :class="{ flipped: isFlipped }">
-      <!-- Регистрация -->
-      <div class="form register-form">
-        <form @submit.prevent="handleRegister">
-          <h2>Регистрация</h2>
-          <input type="email" v-model="form.email" placeholder="email" />
-          <input type="text" v-model="form.name" placeholder="Имя" />
-          <input type="password" v-model="form.password" placeholder="Пароль" />
-          <input
-            type="password"
-            v-model="form.confirmPassword"
-            placeholder="Повторите пароль"
-          />
-          <button type="submit" :disabled="loading">
-            {{ loading ? "Регистрации..." : "Зарегистрироваться" }}
-          </button>
-          <div v-if="error" class="error-message">
-            {{ error }}
-          </div>
-          <p>
-            Есть аккаунт? <a id="goLogin" @click="isFlipped = true">Войти</a>
-          </p>
-        </form>
-      </div>
+  <div class="container_reg">
+    <div>
+      <h1>🏀 Fantasy Basket</h1>
+      <div class="form-container" id="formBox" :class="{ flipped: isFlipped }">
+        <!-- Регистрация -->
+        <div class="form register-form">
+          <form @submit.prevent="handleRegister">
+            <h2>Регистрация</h2>
+            <input type="email" v-model="form.email" placeholder="email" />
+            <input type="text" v-model="form.name" placeholder="Имя" />
+            <input
+              type="password"
+              v-model="form.password"
+              placeholder="Пароль"
+            />
+            <input
+              type="password"
+              v-model="form.confirmPassword"
+              placeholder="Повторите пароль"
+            />
+            <button type="submit" :disabled="loading">
+              {{ loading ? "Регистрации..." : "Зарегистрироваться" }}
+            </button>
+            <div v-if="error" class="error-message">
+              {{ error }}
+            </div>
+            <p>
+              Есть аккаунт? <a id="goLogin" @click="isFlipped = true">Войти</a>
+            </p>
+          </form>
+        </div>
 
-      <!-- Вход -->
-      <div class="form login-form" :class="{ flipped: !isFlipped }">
-        <form @submit.prevent="handleLogin">
-          <h2>Вход</h2>
-          <input
-            type="email"
-            v-model="form_auth.email"
-            placeholder="Email"
-            required
-          />
-          <input
-            type="password"
-            v-model="form_auth.password"
-            placeholder="Пароль"
-            required
-          />
-          <button type="submit" :disabled="loading_auth">
-            {{ loading_auth ? "Вход..." : "Войти" }}
-          </button>
-          <div class="error-message" v-if="error_auth">
-            {{ error_auth }}
-          </div>
-          <p>
-            Нет аккаунта?
-            <a id="goRegister" @click="isFlipped = false">Зарегистрироваться</a>
-          </p>
-          <p style="font-size: 13px; margin-top: 10px; color: #888">
-            Для режима тренера: <strong>coach@team</strong> /
-            <strong>coach</strong>
-          </p>
-        </form>
+        <!-- Вход -->
+        <div class="form login-form" :class="{ flipped: !isFlipped }">
+          <form @submit.prevent="handleLogin">
+            <h2>Вход</h2>
+            <input
+              type="email"
+              v-model="form_auth.email"
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              v-model="form_auth.password"
+              placeholder="Пароль"
+              required
+            />
+            <button type="submit" :disabled="loading_auth">
+              {{ loading_auth ? "Вход..." : "Войти" }}
+            </button>
+            <div class="error-message" v-if="error_auth">
+              {{ error_auth }}
+            </div>
+            <p>
+              Нет аккаунта?
+              <a id="goRegister" @click="isFlipped = false"
+                >Зарегистрироваться</a
+              >
+            </p>
+            <p style="font-size: 13px; margin-top: 10px; color: #888">
+              Для режима тренера: <strong>coach@team</strong> /
+              <strong>coach</strong>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -142,16 +150,10 @@ const handleLogin = async () => {
 };
 </script>
 <style scoped>
-body {
-  margin: 0;
-  height: 100vh;
+.container_reg {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at center, #0f0f0f, #000);
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: #eee;
-  overflow: hidden;
 }
 
 h1 {

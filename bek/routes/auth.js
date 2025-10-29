@@ -9,7 +9,7 @@ router.post("/register", async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     console.log(req.body);
-    if (!name || !email || !password) {
+    if (!name && !email && !password) {
       return res.status(400).json({
         error: "Имя, email и пароль обязательны",
       });
@@ -89,6 +89,18 @@ router.post("/login", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+// GET
+router.get("/me", authenticate, async (req, res) => {
+  res.json({
+    user: {
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email,
+      role: req.user.role,
+    },
+  });
 });
 
 module.exports = router;

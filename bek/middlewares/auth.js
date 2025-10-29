@@ -1,16 +1,21 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
-const authonticate = async (req, resizeBy, next) => {
+
+const authenticate = async (req, res, next) => {
   try {
-    const token = req.header("Authorization")?.replace("Bearer", "");
+    const token = req.header("Authorization")?.replace("Bearer ", "");
+
     if (!token) {
-      return res.status(401).json({ error: "Токен доступа отсутствуте" });
+      return res.status(401).json({ error: "Токен доступа отсутствует" });
     }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findByPk(decoded.userId);
+
     if (!user) {
-      res.status(401).json({ error: "ПОльзователь не найден" });
+      return res.status(401).json({ error: "Пользователь не найден" });
     }
+
     req.user = user;
     next();
   } catch (error) {
@@ -21,10 +26,10 @@ const authonticate = async (req, resizeBy, next) => {
 const authorize = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      res.status(403).json({ error: "Доступ зарпещен" });
+      return res.status(403).json({ error: "Доступ запрещен" });
     }
     next();
   };
 };
 
-module.exports = { authonticate, authorize };
+module.exports = { authenticate, authorize };

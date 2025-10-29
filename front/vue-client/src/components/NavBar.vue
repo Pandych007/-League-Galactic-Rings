@@ -1,5 +1,9 @@
 <template>
+  <router-link to="/players">Игроки</router-link>
+  <router-link to="/statisticks">Статистика</router-link>
   <template v-if="isAuthenticated">
+    <router-link to="/teams">Мои команды</router-link>
+    <router-link to="/profile">Профиль</router-link>
     <button @click="logout">Выйти ({{ user?.name }})</button>
   </template>
   <template v-else>
@@ -31,3 +35,4 @@ watch(token, () => {
   forceUpdate.value++;
 });
 </script>
+<style scoped></style>
