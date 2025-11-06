@@ -1,60 +1,71 @@
 <template>
-  <div>
-    <h2>Игроки</h2>
+  <div class="players-page">
+    <div class="page-header">
+      <h1>Список игроков</h1>
 
-    <div>Найдено игроков: {{ totalPlayers }}</div>
-  </div>
-  <div>
-    <div>
-      <div>
-        <label for="">Поиск по имени</label>
-        <input
-          type="text"
-          v-model="filters.search"
-          placeholder="Поиск по имени"
-          @input="debSearch"
-        />
+      <div class="players-stats">Найдено игроков: {{ totalPlayers }}</div>
+    </div>
+    <div class="filters-panel">
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label for="">Поиск по имени</label>
+          <input
+            type="text"
+            v-model="filters.search"
+            placeholder="Поиск по имени"
+            @input="debSearch"
+            class="search-input"
+          />
+        </div>
+        <div class="filter-group">
+          <label for="">Позиции: </label>
+          <select v-model="filters.position" @change="applyFilters">
+            <option value="">Все Позиции</option>
+            <option value="PG">Разыгрывающий защитник</option>
+            <option value="SG">Атакующий защитник</option>
+            <option value="SF">Легкий форворд</option>
+            <option value="PF">Тяжолый форворд</option>
+            <option value="c">Центровой</option>
+          </select>
+        </div>
+        <div class="filter-action">
+          <button
+            @click="resetFilters"
+            :disabled="!hasActiveFilters"
+            class="reset-btn"
+          >
+            Сбросить фильтры
+          </button>
+        </div>
       </div>
-      <div>
-        <label for="">Позиции: </label>
-        <select v-model="filters.position" @change="applyFilters">
-          <option value="">Все Позиции</option>
-          <option value="PG">Разыгрывающий защитник</option>
-          <option value="SG">Атакующий защитник</option>
-          <option value="SF">Легкий форворд</option>
-          <option value="PF">Тяжолый форворд</option>
-          <option value="c">Ценьровой</option>
-        </select>
-      </div>
-      <div>
-        <button @click="resetFilters" :disabled="!hasActiveFilters">
-          Сбросить фильтры
-        </button>
+      <div v-if="hasActiveFilters" class="active-filters">
+        <span class="active-filters-label">Активные фильтры</span>
+        <div v-if="filters.position" class="filter-tag">
+          Позиция {{ getPositionLabel("position") }}
+          <button @click="removeFilter('position')" class="remove-filter">
+            x
+          </button>
+        </div>
+        <div v-if="filters.search" class="filter-tag">
+          Поиск {{ filters.search }}
+          <button @click="removeFilter('search')" class="remove-filter">
+            x
+          </button>
+        </div>
       </div>
     </div>
-    <div v-if="hasActiveFilters">
-      <span>Активные фильтры</span>
-      <div v-if="filters.position">
-        Позиция {{ getPositionLabel("position") }}
-        <button @click="removeFilter('position')">x</button>
-      </div>
-      <div v-if="filters.search">
-        Поиск {{ filters.search }}
-        <button @click="removeFilter('search')">x</button>
-      </div>
+    <div v-if="loading" class="loading">
+      <div>Загрузка игроков</div>
     </div>
-  </div>
-  <div v-if="loading">
-    <div>Загрузка игроков</div>
-  </div>
-  <div v-else>
-    <PlayerCard
-      v-for="player in players"
-      :key="player.id"
-      :player="player"
-      :show-add-button="isAuthenticated"
-      @add-to-team="addToTeam"
-    />
+    <div v-else>
+      <PlayerCard
+        v-for="player in players"
+        :key="player.id"
+        :player="player"
+        :show-add-button="isAuthenticated"
+        @add-to-team="addToTeam"
+      />
+    </div>
   </div>
 </template>
 <script setup>
@@ -85,7 +96,7 @@ const hasActiveFilters = computed(() => {
 
 let searchTimeout = null;
 
-const debouncedSearch = () => {
+const debSearch = () => {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
     currentPage.value = 1;
@@ -106,6 +117,7 @@ const loadPlayers = async () => {
       limit: itemsPerPage.value,
       ...filters.value,
     };
+    console.log(params);
 
     Object.keys(params).forEach((key) => {
       if (
@@ -116,12 +128,10 @@ const loadPlayers = async () => {
         delete params[key];
       }
     });
-
+    console.log(params);
     const response = await api.get("/players", { params });
-    console.log(response);
 
     const data = response.data;
-    console.log(data);
     players.value = data.players || data;
     totalPages.value = data.totalPages || 1;
     totalPlayers.value = data.totalPlayers || players.value.length;
@@ -176,4 +186,66 @@ onMounted(() => {
 
 watch(currentPage, loadPlayers);
 </script>
-<style scoped></style>
+<style scoped>
+.players-page {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.page-header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.filter-group label {
+  font-weight: 600;
+}
+.filter-group select,
+.filter-group input {
+  padding: 10px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: #3498ab;
+}
+.search-input {
+  width: 91%;
+}
+.filter-action {
+  display: flex;
+  align-items: flex-end;
+}
+.reset-btn {
+  background: #95a5a6;
+  color: #fff;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+</style>

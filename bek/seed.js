@@ -45,6 +45,7 @@ async function seedDatabase() {
         perexvat: 1.3,
         poteri: 1.6,
         blokchotu: 0.1,
+        avatar: "/bek/img/цска/87-avramovic-1500.jpg",
       }, // 95
       {
         name: "Алекса 1 Аврмович",
@@ -55,6 +56,7 @@ async function seedDatabase() {
         perexvat: 1.3,
         poteri: 1.6,
         blokchotu: 0.1,
+        avatar: "/bek/img/цска/87-avramovic-1500.jpg",
       }, // 95
       {
         name: "Алекса 2 Аврмович",
@@ -65,6 +67,7 @@ async function seedDatabase() {
         perexvat: 1.3,
         poteri: 1.6,
         blokchotu: 0.1,
+        avatar: "/bek/img/цска/87-avramovic-1500.jpg",
       }, // 95
     ]);
 
