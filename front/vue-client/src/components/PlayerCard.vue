@@ -21,27 +21,27 @@
       </div>
       <div class="stat">
         <span class="label">Подборы:</span>
-        <div class="value">{{ player.podboru }}</div>
+        <div class="value">{{ player.rebounds }}</div>
       </div>
       <div class="stat">
         <span class="label">Передачи:</span>
-        <div class="value">{{ player.peredachu }}</div>
+        <div class="value">{{ player.assists }}</div>
       </div>
       <div class="stat">
         <span class="label">Фолы:</span>
-        <div class="value">{{ player.folv }}</div>
+        <div class="value">{{ player.fouls }}</div>
       </div>
       <div class="stat">
         <span class="label">Перехваты:</span>
-        <div class="value">{{ player.perexvat }}</div>
+        <div class="value">{{ player.steals }}</div>
       </div>
       <div class="stat">
         <span class="label">Потери:</span>
-        <div class="value">{{ player.poteri }}</div>
+        <div class="value">{{ player.turnovers }}</div>
       </div>
       <div class="stat">
         <span class="label">Блокшоты:</span>
-        <div class="value">{{ player.blokchotu }}</div>
+        <div class="value">{{ player.blocks }}</div>
       </div>
     </div>
     <div class="player-footer">

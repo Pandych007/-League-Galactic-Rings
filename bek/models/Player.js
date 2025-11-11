@@ -20,27 +20,27 @@ const Player = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    podboru: {
+    rebounds: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
     },
-    peredachu: {
+    assists: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
     },
-    folv: {
+    fouls: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
     },
-    perexvat: {
+    steals: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
     },
-    poteri: {
+    turnovers: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
     },
-    blokchotu: {
+    blocks: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
     },
