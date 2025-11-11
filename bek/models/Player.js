@@ -52,6 +52,17 @@ const Player = sequelize.define(
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    avatar: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    cost: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+      validate: {
+        min: 0,
+      },
+    },
   },
   {
     tableName: "players",

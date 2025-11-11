@@ -57,7 +57,7 @@
     <div v-if="loading" class="loading">
       <div>Загрузка игроков</div>
     </div>
-    <div v-else>
+    <div v-else class="players-grid">
       <PlayerCard
         v-for="player in players"
         :key="player.id"
@@ -247,5 +247,67 @@ watch(currentPage, loadPlayers);
   cursor: pointer;
   font-size: 15px;
   transition: background-color 0.3s;
+}
+.active-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ecf0f1;
+  flex-wrap: wrap;
+}
+.active-filters-label {
+  font-weight: 600;
+  color: #fff;
+  font-size: 10px;
+}
+.active-filters-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.filter-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #3498db;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.remove-filter {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.remove-filter:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #7f8c8d;
+}
+.players-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  margin-bottom: 20px;
 }
 </style>
