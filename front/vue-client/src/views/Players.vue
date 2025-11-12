@@ -25,7 +25,7 @@
             <option value="SG">Атакующий защитник</option>
             <option value="SF">Легкий форворд</option>
             <option value="PF">Тяжолый форворд</option>
-            <option value="c">Центровой</option>
+            <option value="C">Центровой</option>
           </select>
         </div>
         <div class="filter-action">

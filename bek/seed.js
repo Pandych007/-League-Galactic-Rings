@@ -154,10 +154,11 @@ async function seedDatabase() {
     //   avatar: "",
     //   cost: 95.0,
     // }, // 95
-    const CSKA_MOSCOW = await Player.bulkCreate([
+    const ALL_Playeres = await Player.bulkCreate([
+      //  CSKA
       {
         name: "Мело Тримбл",
-        position: "PG",
+        position: "PG", // Разыгрывающий защитник
         points: 14.8,
         rebounds: 2.7,
         assists: 4.1,
@@ -170,7 +171,7 @@ async function seedDatabase() {
       },
       {
         name: "Алекса Аврамович",
-        position: "PG",
+        position: "SG", // Атакующий защитник
         points: 12.1,
         rebounds: 2.8,
         assists: 3.3,
@@ -183,7 +184,7 @@ async function seedDatabase() {
       },
       {
         name: "Каспер Уэйр",
-        position: "PG",
+        position: "PG", // Разыгрывающий защитник
         points: 11.1,
         rebounds: 1.9,
         assists: 3.2,
@@ -196,6 +197,7 @@ async function seedDatabase() {
       },
       {
         name: "Тони Джекири",
+        position: "C", // Центровой
         points: 10.7,
         rebounds: 5.2,
         assists: 1.0,
@@ -208,7 +210,7 @@ async function seedDatabase() {
       },
       {
         name: "Амат Мбайе",
-        position: "PG",
+        position: "PF", // Тяжёлый форвард
         points: 10.3,
         rebounds: 2.8,
         assists: 1.5,
@@ -221,7 +223,7 @@ async function seedDatabase() {
       },
       {
         name: "Ливио Жан-Шарль",
-        position: "PG",
+        position: "PF", // Тяжёлый форвард
         points: 10.1,
         rebounds: 4.1,
         assists: 1.1,
@@ -234,7 +236,7 @@ async function seedDatabase() {
       },
       {
         name: "Антон Астапкович",
-        position: "PG",
+        position: "SF", // Лёгкий форвард
         points: 7.6,
         rebounds: 3.7,
         assists: 1.6,
@@ -246,8 +248,8 @@ async function seedDatabase() {
         cost: 35,
       },
       {
-        position: "PG",
         name: "Юрий Умрихин",
+        position: "PG", // Разыгрывающий защитник
         points: 6.0,
         rebounds: 0.7,
         assists: 1.3,
@@ -260,7 +262,7 @@ async function seedDatabase() {
       },
       {
         name: "Иван Ухов",
-        position: "PG",
+        position: "PG", // Разыгрывающий защитник
         points: 5.4,
         rebounds: 2.9,
         assists: 2.0,
@@ -273,7 +275,7 @@ async function seedDatabase() {
       },
       {
         name: "Семен Антонов",
-        position: "PG",
+        position: "PF", // Тяжёлый форвард
         points: 4.0,
         rebounds: 1.8,
         assists: 0.7,
@@ -286,7 +288,7 @@ async function seedDatabase() {
       },
       {
         name: "Никита Курбанов",
-        position: "PG",
+        position: "SF", // Лёгкий форвард
         points: 3.7,
         rebounds: 3.8,
         assists: 1.3,
@@ -299,7 +301,7 @@ async function seedDatabase() {
       },
       {
         name: "Руслан Абдулбасиров",
-        position: "PG",
+        position: "SF", // Лёгкий форвард
         points: 3.4,
         rebounds: 1.6,
         assists: 0.4,
@@ -312,6 +314,7 @@ async function seedDatabase() {
       },
       {
         name: "Владимир Карпенко",
+        position: "PG", // Разыгрывающий защитник
         points: 3.1,
         rebounds: 0.7,
         assists: 0.9,
@@ -324,6 +327,7 @@ async function seedDatabase() {
       },
       {
         name: "Александр Ганькевич",
+        position: "PF", // Тяжёлый форвард
         points: 2.7,
         rebounds: 2.1,
         assists: 0.8,
@@ -336,6 +340,7 @@ async function seedDatabase() {
       },
       {
         name: "Никита Михайловский",
+        position: "SF", // Лёгкий форвард
         points: 2.3,
         rebounds: 1.9,
         assists: 0.9,
@@ -348,6 +353,7 @@ async function seedDatabase() {
       },
       {
         name: "Нандо Де Коло",
+        position: "SG", // Атакующий защитник
         points: 16.7,
         rebounds: 2.7,
         assists: 4.2,
@@ -360,6 +366,7 @@ async function seedDatabase() {
       },
       {
         name: "Серхио Родригес",
+        position: "PG", // Разыгрывающий защитник
         points: 9.8,
         rebounds: 1.9,
         assists: 5.2,
@@ -372,6 +379,7 @@ async function seedDatabase() {
       },
       {
         name: "Уилл Клайберн",
+        position: "SF", // Лёгкий форвард
         points: 12.4,
         rebounds: 4.5,
         assists: 1.7,
@@ -384,6 +392,7 @@ async function seedDatabase() {
       },
       {
         name: "Отелло Хантер",
+        position: "C", // Центровой
         points: 8.5,
         rebounds: 4.0,
         assists: 0.7,
@@ -396,6 +405,7 @@ async function seedDatabase() {
       },
       {
         name: "Кайл Хайнс",
+        position: "C", // Центровой
         points: 9.3,
         rebounds: 4.6,
         assists: 1.2,
@@ -406,10 +416,11 @@ async function seedDatabase() {
         avatar: "/img/CSKA/Кайл Хайнс.png",
         cost: 45,
       },
-    ]);
-    const ZENIT_PLAYERS = await Player.bulkCreate([
+
+      // ZENIT
       {
         name: "Дуэйн Бэйкон",
+        position: "SF", // Лёгкий форвард
         points: 17.6,
         rebounds: 3.2,
         assists: 2.2,
@@ -422,6 +433,7 @@ async function seedDatabase() {
       },
       {
         name: "Ксавьер Мун",
+        position: "PG", // Разыгрывающий защитник
         points: 13.5,
         rebounds: 3.3,
         assists: 5.0,
@@ -434,6 +446,7 @@ async function seedDatabase() {
       },
       {
         name: "Трент Фрейзер",
+        position: "SG", // Атакующий защитник
         points: 11.9,
         rebounds: 1.9,
         assists: 4.2,
@@ -446,6 +459,7 @@ async function seedDatabase() {
       },
       {
         name: "Алекс Пойтресс",
+        position: "PF", // Тяжёлый форвард
         points: 9.8,
         rebounds: 3.1,
         assists: 0.4,
@@ -458,6 +472,7 @@ async function seedDatabase() {
       },
       {
         name: "Алексей Швед",
+        position: "SG", // Атакующий защитник
         points: 9.0,
         rebounds: 1.8,
         assists: 5.1,
@@ -470,6 +485,7 @@ async function seedDatabase() {
       },
       {
         name: "Винс Хантер",
+        position: "C", // Центровой
         points: 8.4,
         rebounds: 3.5,
         assists: 1.1,
@@ -482,6 +498,7 @@ async function seedDatabase() {
       },
       {
         name: "Окаро Уайт",
+        position: "PF", // Тяжёлый форвард
         points: 7.7,
         rebounds: 2.6,
         assists: 0.9,
@@ -494,6 +511,7 @@ async function seedDatabase() {
       },
       {
         name: "Георгий Жбанов",
+        position: "SG", // Атакующий защитник
         points: 6.9,
         rebounds: 2.0,
         assists: 1.2,
@@ -506,6 +524,7 @@ async function seedDatabase() {
       },
       {
         name: "Сергей Карасев",
+        position: "SF", // Лёгкий форвард
         points: 5.8,
         rebounds: 2.2,
         assists: 1.4,
@@ -518,6 +537,7 @@ async function seedDatabase() {
       },
       {
         name: "Андрей Воронцевич",
+        position: "PF", // Тяжёлый форвард
         points: 5.1,
         rebounds: 2.5,
         assists: 1.2,
@@ -530,6 +550,7 @@ async function seedDatabase() {
       },
       {
         name: "Александр Щербенев",
+        position: "PG", // Разыгрывающий защитник
         points: 3.8,
         rebounds: 0.8,
         assists: 1.8,
@@ -542,6 +563,7 @@ async function seedDatabase() {
       },
       {
         name: "Егор Рыжов",
+        position: "SG", // Атакующий защитник
         points: 3.1,
         rebounds: 0.8,
         assists: 0.3,
@@ -554,6 +576,7 @@ async function seedDatabase() {
       },
       {
         name: "Денис Захаров",
+        position: "PG", // Разыгрывающий защитник
         points: 2.3,
         rebounds: 0.7,
         assists: 0.3,
@@ -566,6 +589,7 @@ async function seedDatabase() {
       },
       {
         name: "Томас Эртель",
+        position: "PG", // Разыгрывающий защитник
         points: 13.0,
         rebounds: 2.2,
         assists: 8.1,
@@ -578,6 +602,7 @@ async function seedDatabase() {
       },
       {
         name: "Калеб Хоумсли",
+        position: "SF", // Лёгкий форвард
         points: 11.2,
         rebounds: 2.9,
         assists: 1.9,
@@ -590,6 +615,7 @@ async function seedDatabase() {
       },
       {
         name: "Джордан Мики",
+        position: "PF", // Тяжёлый форвард
         points: 13.3,
         rebounds: 4.7,
         assists: 1.7,
@@ -602,6 +628,7 @@ async function seedDatabase() {
       },
       {
         name: "Билли Бэрон",
+        position: "SG", // Атакующий защитник
         points: 14.1,
         rebounds: 1.5,
         assists: 2.3,
@@ -614,6 +641,7 @@ async function seedDatabase() {
       },
       {
         name: "Кевин Пангос",
+        position: "PG", // Разыгрывающий защитник
         points: 12.5,
         rebounds: 1.8,
         assists: 6.8,
@@ -622,10 +650,11 @@ async function seedDatabase() {
         turnovers: 2.3,
         blocks: 0.0,
         avatar: "bek/img/ZENIT/Кевин Пангос.png",
-        pcost: 50,
+        cost: 50,
       },
       {
         name: "Джош Карлтон",
+        position: "C", // Центровой
         points: 4.7,
         rebounds: 0.8,
         assists: 0.1,
@@ -638,6 +667,7 @@ async function seedDatabase() {
       },
       {
         name: "Сергей Моня",
+        position: "PF", // Тяжёлый форвард
         points: 1.3,
         rebounds: 1.2,
         assists: 0.2,
@@ -648,11 +678,11 @@ async function seedDatabase() {
         avatar: "bek/img/ZENIT/Сергей Моня.png",
         cost: 10,
       },
-    ]);
+      // LOKO
 
-    const loko = await Player.bulkCreate([
       {
         name: "Патрик Миллер",
+        position: "PG",
         points: 15.9,
         rebounds: 3.4,
         assists: 6.0,
@@ -665,6 +695,7 @@ async function seedDatabase() {
       },
       {
         name: "Антониус Кливленд",
+        position: "SG/SF",
         points: 14.0,
         rebounds: 4.3,
         assists: 3.0,
@@ -677,6 +708,7 @@ async function seedDatabase() {
       },
       {
         name: "Би Джей Джонсон",
+        position: "SF",
         points: 12.5,
         rebounds: 3.8,
         assists: 1.0,
@@ -689,6 +721,7 @@ async function seedDatabase() {
       },
       {
         name: "Таджер Макколл",
+        position: "SG",
         points: 10.3,
         rebounds: 2.4,
         assists: 3.2,
@@ -701,6 +734,7 @@ async function seedDatabase() {
       },
       {
         name: "Карвел Андерсон",
+        position: "SG",
         points: 8.3,
         rebounds: 2.2,
         assists: 0.9,
@@ -713,6 +747,7 @@ async function seedDatabase() {
       },
       {
         name: "Айзейя Уэйли",
+        position: "PF",
         points: 8.1,
         rebounds: 5.2,
         assists: 0.9,
@@ -725,6 +760,7 @@ async function seedDatabase() {
       },
       {
         name: "Андрей Мартюк",
+        position: "PF/C",
         points: 8.1,
         rebounds: 4.9,
         assists: 1.0,
@@ -732,11 +768,12 @@ async function seedDatabase() {
         steals: 0.4,
         turnovers: 1.0,
         blocks: 0.6,
-        avatar: "/img/LOKO/ндрей Мартюк.png",
+        avatar: "/img/LOKO/Андрей Мартюк.png",
         cost: 45,
       },
       {
         name: "Кирилл Елатонцев",
+        position: "C",
         points: 7.2,
         rebounds: 4.6,
         assists: 0.8,
@@ -749,6 +786,7 @@ async function seedDatabase() {
       },
       {
         name: "Владислав Емченко",
+        position: "PG",
         points: 6.3,
         rebounds: 1.8,
         assists: 2.1,
@@ -761,6 +799,7 @@ async function seedDatabase() {
       },
       {
         name: "Александр Гудумак",
+        position: "PF",
         points: 5.7,
         rebounds: 1.8,
         assists: 0.8,
@@ -773,6 +812,7 @@ async function seedDatabase() {
       },
       {
         name: "Кирилл Темиров",
+        position: "SG",
         points: 5.6,
         rebounds: 1.7,
         assists: 1.2,
@@ -785,6 +825,7 @@ async function seedDatabase() {
       },
       {
         name: "Антон Квитковских",
+        position: "PF",
         points: 4.6,
         rebounds: 2.7,
         assists: 0.8,
@@ -797,6 +838,7 @@ async function seedDatabase() {
       },
       {
         name: "Михаил Ведищев",
+        position: "PG",
         points: 4.3,
         rebounds: 0.9,
         assists: 1.7,
@@ -809,6 +851,7 @@ async function seedDatabase() {
       },
       {
         name: "Джон Дженкинс",
+        position: "SG",
         points: 4.1,
         rebounds: 1.1,
         assists: 0.5,
@@ -821,6 +864,7 @@ async function seedDatabase() {
       },
       {
         name: "Данил Шеянов",
+        position: "SF",
         points: 3.8,
         rebounds: 1.6,
         assists: 0.6,
@@ -833,6 +877,7 @@ async function seedDatabase() {
       },
       {
         name: "Всеволод Ищенко",
+        position: "PG",
         points: 3.2,
         rebounds: 1.5,
         assists: 1.2,
@@ -845,6 +890,7 @@ async function seedDatabase() {
       },
       {
         name: "Дмитрий Узинский",
+        position: "PF",
         points: 3.2,
         rebounds: 1.8,
         assists: 0.4,
@@ -857,6 +903,7 @@ async function seedDatabase() {
       },
       {
         name: "Даниил Коско",
+        position: "PG",
         points: 1.2,
         rebounds: 0.5,
         assists: 0.8,
@@ -869,6 +916,7 @@ async function seedDatabase() {
       },
       {
         name: "Артем Чеваренков",
+        position: "PG",
         points: 0.8,
         rebounds: 0.3,
         assists: 1.7,
@@ -881,6 +929,7 @@ async function seedDatabase() {
       },
       {
         name: "Джейлен Барфорд",
+        position: "SG",
         points: 16.5,
         rebounds: 3.6,
         assists: 3.8,
@@ -891,11 +940,11 @@ async function seedDatabase() {
         avatar: "/img/LOKO/Джейлен Барфорд.png",
         cost: 70,
       },
-    ]);
+      // UNIKS
 
-    const UNICS_KAZAN = await Player.bulkCreate([
       {
         name: "Маркос Найт",
+        position: "SG",
         points: 16.1,
         rebounds: 4.1,
         assists: 4.0,
@@ -908,6 +957,7 @@ async function seedDatabase() {
       },
       {
         name: "Девон Акун-Перселл",
+        position: "SF",
         points: 15.8,
         rebounds: 3.1,
         assists: 3.2,
@@ -920,6 +970,7 @@ async function seedDatabase() {
       },
       {
         name: "Джален Рейнольдс",
+        position: "C",
         points: 14.3,
         rebounds: 5.9,
         assists: 1.9,
@@ -932,6 +983,7 @@ async function seedDatabase() {
       },
       {
         name: "Маркус Кин",
+        position: "PG",
         points: 10.3,
         rebounds: 2.3,
         assists: 2.7,
@@ -944,6 +996,7 @@ async function seedDatabase() {
       },
       {
         name: "Тони Тэйлор",
+        position: "PG",
         points: 9.8,
         rebounds: 2.2,
         assists: 4.3,
@@ -956,6 +1009,7 @@ async function seedDatabase() {
       },
       {
         name: "Исмаэль Бако",
+        position: "C",
         points: 9.0,
         rebounds: 6.8,
         assists: 0.8,
@@ -968,6 +1022,7 @@ async function seedDatabase() {
       },
       {
         name: "Дарран Хиллиард",
+        position: "SG",
         points: 8.9,
         rebounds: 1.8,
         assists: 1.4,
@@ -980,6 +1035,7 @@ async function seedDatabase() {
       },
       {
         name: "Дмитрий Кулагин",
+        position: "PG",
         points: 6.5,
         rebounds: 2.7,
         assists: 3.5,
@@ -992,6 +1048,7 @@ async function seedDatabase() {
       },
       {
         name: "Луи Лабери",
+        position: "PF",
         points: 6.4,
         rebounds: 4.3,
         assists: 0.9,
@@ -1004,6 +1061,7 @@ async function seedDatabase() {
       },
       {
         name: "Андрей Лопатин",
+        position: "PF",
         points: 6.3,
         rebounds: 3.1,
         assists: 1.4,
@@ -1016,6 +1074,7 @@ async function seedDatabase() {
       },
       {
         name: "Михаил Беленицкий",
+        position: "SF",
         points: 5.5,
         rebounds: 3.8,
         assists: 1.3,
@@ -1028,6 +1087,7 @@ async function seedDatabase() {
       },
       {
         name: "Сергей Торопов",
+        position: "PF",
         points: 3.7,
         rebounds: 2.3,
         assists: 0.7,
@@ -1040,6 +1100,7 @@ async function seedDatabase() {
       },
       {
         name: "Артем Комолов",
+        position: "SG",
         points: 3.1,
         rebounds: 1.1,
         assists: 0.9,
@@ -1052,6 +1113,7 @@ async function seedDatabase() {
       },
       {
         name: "Александр Платунов",
+        position: "PG",
         points: 1.9,
         rebounds: 0.5,
         assists: 1.2,
@@ -1064,6 +1126,7 @@ async function seedDatabase() {
       },
       {
         name: "Александр Стуленков",
+        position: "C",
         points: 1.3,
         rebounds: 0.9,
         assists: 0.2,
@@ -1076,6 +1139,7 @@ async function seedDatabase() {
       },
       {
         name: "Роман Илюк",
+        position: "PG",
         points: 1.3,
         rebounds: 0.4,
         assists: 0.6,
@@ -1088,6 +1152,7 @@ async function seedDatabase() {
       },
       {
         name: "Кит Лэнгфорд",
+        position: "SG",
         points: 21.8,
         rebounds: 3.4,
         assists: 3.7,
@@ -1100,6 +1165,7 @@ async function seedDatabase() {
       },
       {
         name: "Артем Параховский",
+        position: "C",
         points: 11.3,
         rebounds: 5.1,
         assists: 0.4,
@@ -1112,6 +1178,7 @@ async function seedDatabase() {
       },
       {
         name: "Хоаким Колом",
+        position: "PG",
         points: 11.3,
         rebounds: 3.9,
         assists: 5.7,
@@ -1124,6 +1191,7 @@ async function seedDatabase() {
       },
       {
         name: "Лэтэвиус Уильямс",
+        position: "PF",
         points: 6.9,
         rebounds: 5.1,
         assists: 0.5,
