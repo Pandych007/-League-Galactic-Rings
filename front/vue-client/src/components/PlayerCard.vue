@@ -9,28 +9,28 @@
     <div class="avatar">
       <img
         v-if="player.avatar"
-        :src="player.avatar"
+        :src="'http://localhost:3000' + player.avatar"
         :alt="player.name"
         class="player-avatar"
       />
     </div>
     <div class="player-info">
-      <div class="stat">
+      <!-- <div class="stat">
         <span class="label">Очки:</span>
         <div class="value">{{ player.points }}</div>
-      </div>
+      </div> -->
       <div class="stat">
         <span class="label">Подборы:</span>
         <div class="value">{{ player.rebounds }}</div>
       </div>
-      <div class="stat">
+      <!-- <div class="stat">
         <span class="label">Передачи:</span>
         <div class="value">{{ player.assists }}</div>
-      </div>
-      <div class="stat">
+      </div> -->
+      <!-- <div class="stat">
         <span class="label">Фолы:</span>
         <div class="value">{{ player.fouls }}</div>
-      </div>
+      </div> -->
       <div class="stat">
         <span class="label">Перехваты:</span>
         <div class="value">{{ player.steals }}</div>
@@ -39,10 +39,10 @@
         <span class="label">Потери:</span>
         <div class="value">{{ player.turnovers }}</div>
       </div>
-      <div class="stat">
+      <!-- <div class="stat">
         <span class="label">Блокшоты:</span>
         <div class="value">{{ player.blocks }}</div>
-      </div>
+      </div> -->
     </div>
     <div class="player-footer">
       <span class="cost">{{ player.cost }}</span>
@@ -109,5 +109,50 @@ const positionClass = computed(() => {
 
 .player-card:hover {
   transform: translateY(-2px);
+}
+.player-avatar {
+  width: 100%;
+}
+.player-info {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.stat {
+  display: flex;
+  justify-content: space-between;
+}
+.label {
+  font-weight: 500;
+}
+.value {
+  font-weight: bold;
+}
+.player-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cost {
+  font-size: 15px;
+  font-weight: bold;
+  color: #27ae60;
+}
+.add-btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.add-btn:hover:not(:disabled) {
+  background: #2980b9;
+}
+.add-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
 }
 </style>

@@ -8,8 +8,17 @@ const playersRoutes = require("./routes/players");
 const teamsRoutes = require("./routes/teams");
 const rankingRoutes = require("./routes/ranking");
 const errorHandler = require("./middlewares/errorHandler");
+const path = require("path");
 
 const app = express();
+app.use("/img", express.static(path.join(__dirname, "img")));
+app.use("/img", express.static(path.join(__dirname, "bek", "img")));
+
+app.use("/img", (req, res, next) => {
+  console.log(req.url);
+  next();
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());

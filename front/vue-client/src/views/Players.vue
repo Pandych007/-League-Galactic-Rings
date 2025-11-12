@@ -66,6 +66,26 @@
         @add-to-team="addToTeam"
       />
     </div>
+    <div v-if="totalPages" class="pagination">
+      <button
+        :disabled="currentPage === 1"
+        @click="changePage(currentPage - 1)"
+        class="pagination-btn"
+      >
+        Назад
+      </button>
+      <div class="pagination-info">
+        Страница {{ currentPage }} из {{ totalPages }}
+        <span class="pagination-stats">(всего: {{ totalPlayers }})</span>
+      </div>
+      <button
+        :disabled="currentPage === totalPages"
+        @click="changePage(currentPage + 1)"
+        class="pagination-btn"
+      >
+        Вперед
+      </button>
+    </div>
   </div>
 </template>
 <script setup>
@@ -309,5 +329,28 @@ watch(currentPage, loadPlayers);
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 30px;
   margin-bottom: 20px;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.pagination-btn {
+  background: #fff;
+  color: #3498db;
+  border: 2px solid #3498db;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s;
+  min-width: 120px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  color: #fff;
+  background: #3498db;
+  cursor: not-allowed;
 }
 </style>
