@@ -112,6 +112,8 @@ const positionClass = computed(() => {
 }
 .player-avatar {
   width: 100%;
+  /*height: 300px;
+  object-fit: cover;*/
 }
 .player-info {
   display: flex;

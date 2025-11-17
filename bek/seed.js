@@ -81,9 +81,9 @@ async function seedDatabase() {
     // ]);
 
     // const loko = [
-    //   { name: "Патрик Миллер", points: 15.9, rebounds: 3.4, assists: 6.0, fouls: 2.4, steals: 1.5, turnovers: 2.6, blocks: 0.0,avatar: "/img/LOKO/Патрик Миллер.png", cost: 70 },
-    //   { name: "Антониус Кливленд", points: 14.0, rebounds: 4.3, assists: 3.0, fouls: 2.3, steals: 1.7, turnovers: 2.0, blocks: 0.7,avatar: "/img/LOKO/Антониус Кливленд.png", cost: 65 },
-    //   { name: "Би Джей Джонсон", points: 12.5, rebounds: 3.8, assists: 1.0, fouls: 2.0, steals: 1.0, turnovers: 1.6, blocks: 0.5,avatar: "/img/LOKO/Би Джей Джонсон.png", cost: 60 },
+    //   +{ name: "Патрик Миллер", points: 15.9, rebounds: 3.4, assists: 6.0, fouls: 2.4, steals: 1.5, turnovers: 2.6, blocks: 0.0,avatar: "/img/LOKO/Патрик Миллер.png", cost: 70 },
+    //   +{ name: "Антониус Кливленд", points: 14.0, rebounds: 4.3, assists: 3.0, fouls: 2.3, steals: 1.7, turnovers: 2.0, blocks: 0.7,avatar: "/img/LOKO/Антониус Кливленд.png", cost: 65 },
+    //   +{ name: "Би Джей Джонсон", points: 12.5, rebounds: 3.8, assists: 1.0, fouls: 2.0, steals: 1.0, turnovers: 1.6, blocks: 0.5,avatar: "/img/LOKO/Би Джей Джонсон.png", cost: 60 },
     //   { name: "Таджер Макколл", points: 10.3, rebounds: 2.4, assists: 3.2, fouls: 3.0, steals: 1.4, turnovers: 1.9, blocks: 0.2,avatar: "/img/LOKO/Таджер Макколл.png", cost: 50 },
     //   { name: "Карвел Андерсон", points: 8.3, rebounds: 2.2, assists: 0.9, fouls: 1.3, steals: 0.5, turnovers: 0.7, blocks: 0.0,avatar: "/img/LOKO/Карвел Андерсон.png", cost: 40 },
     //   { name: "Айзейя Уэйли", points: 8.1, rebounds: 5.2, assists: 0.9, fouls: 2.0, steals: 0.7, turnovers: 0.9, blocks: 1.1,avatar: "/img/LOKO/Айзейя Уэйли.png", cost: 45 },
@@ -99,31 +99,31 @@ async function seedDatabase() {
     //   { name: "Всеволод Ищенко", points: 3.2, rebounds: 1.5, assists: 1.2, fouls: 1.8, steals: 0.5, turnovers: 1.1, blocks: 0.1,avatar: "/img/LOKO/Всеволод Ищенко.png", cost: 20 },
     //   { name: "Дмитрий Узинский", points: 3.2, rebounds: 1.8, assists: 0.4, fouls: 1.9, steals: 0.5, turnovers: 0.3, blocks: 0.1,avatar: "/img/LOKO/Дмитрий Узинский.png", cost:20 },
     //   { name: "Даниил Коско", points: 1.2, rebounds: 0.5, assists: 0.8, fouls: 1.3, steals: 0.8, turnovers: 0.0, blocks: 0.2,avatar: "/img/LOKO/Даниил Коско.png", cost: 10 },
-    //   { name: "Артем Чеваренков", points: 0.8, rebounds: 0.3, assists: 1.7, fouls: 0.7, steals: 0.7, turnovers: 0.8, blocks: 0.0,avatar: "/img/LOKO/Артем Чеваренков.png", cost: 10 },
-    //   { name: "Джейлен Барфорд", points: 16.5, rebounds: 3.6, assists: 3.8, fouls: 2.4, steals: 1.6, turnovers: 2.1, blocks: 0.2,avatar: "/img/LOKO/Джейлен Барфорд.png", cost: 70 },
+    //   -{ name: "Артем Чеваренков", points: 0.8, rebounds: 0.3, assists: 1.7, fouls: 0.7, steals: 0.7, turnovers: 0.8, blocks: 0.0,avatar: "/img/LOKO/Артем Чеваренков.png", cost: 10 },
+    //   -{ name: "Джейлен Барфорд", points: 16.5, rebounds: 3.6, assists: 3.8, fouls: 2.4, steals: 1.6, turnovers: 2.1, blocks: 0.2,avatar: "/img/LOKO/Джейлен Барфорд.png", cost: 70 },
     // ];
 
     //  const ZENIT_PLAYERS = [
-    //   { name: "Дуэйн Бэйкон", points: 17.6, rebounds: 3.2, assists: 2.2, fouls: 2.7, steals: 0.7, turnovers: 2.0, blocks: 0.2,avatar: "/img/ZENIT/Дуэйн Бэйкон.png", cost: 70 },
-    //   { name: "Ксавьер Мун", points: 13.5, rebounds: 3.3, assists: 5.0, fouls: 1.9, steals: 1.2, turnovers: 2.2, blocks: 0.5,avatar: "bek/img/ZENIT/Ксавьер Мун.png", cost: 55 },
-    //   { name: "Трент Фрейзер", points: 11.9, rebounds: 1.9, assists: 4.2, fouls: 2.3, steals: 0.9, turnovers: 1.8, blocks: 0.1,avatar: "bek/img/ZENIT/Трент Фрейзер.png", cost: 50 },
-    //   { name: "Алекс Пойтресс", points: 9.8, rebounds: 3.1, assists: 0.4, fouls: 2.5, steals: 0.7, turnovers: 0.9, blocks: 0.9,avatar: "bek/img/ZENIT/Алекс Пойтресс.png", cost: 45 },
-    //   { name: "Алексей Швед", points: 9.0, rebounds: 1.8, assists: 5.1, fouls: 1.7, steals: 0.5, turnovers: 1.8, blocks: 0.3,avatar: "bek/img/ZENIT/Алексей Швед.png", cost: 45 },
-    //   { name: "Винс Хантер", points: 8.4, rebounds: 3.5, assists: 1.1, fouls: 2.6, steals: 1.1, turnovers: 0.9, blocks: 0.9,avatar: "bek/img/ZENIT/Винс Хантер.png", cost: 45 },
-    //   { name: "Окаро Уайт", points: 7.7, rebounds: 2.6, assists: 0.9, fouls: 2.6, steals: 0.7, turnovers: 0.6, blocks: 0.2,avatar: "bek/img/ZENIT/Окаро Уайт.png", cost: 40 },
-    //   { name: "Георгий Жбанов", points: 6.9, rebounds: 2.0, assists: 1.2, fouls: 2.3, steals: 1.3, turnovers: 0.6, blocks: 0.3,avatar: "bek/img/ZENIT/Георгий Жбанов.png", cost:35 },
-    //   { name: "Сергей Карасев", points: 5.8, rebounds: 2.2, assists: 1.4, fouls: 2.1, steals: 1.0, turnovers: 0.3, blocks: 0.3,avatar: "bek/img/ZENIT/.png", cost: 30 },
-    //   { name: "Андрей Воронцевич", points: 5.1, rebounds: 2.5, assists: 1.2, fouls: 1.7, steals: 0.6, turnovers: 0.4, blocks: 0.4,avatar: "bek/img/ZENIT/Сергей Карасев.png", cost: 30 },
-    //   { name: "Александр Щербенев", points: 3.8, rebounds: 0.8, assists: 1.8, fouls: 1.0, steals: 0.4, turnovers: 0.7, blocks: 0.0,avatar: "bek/img/ZENIT/Александр Щербенев.png", cost: 20 },
-    //   { name: "Егор Рыжов", points: 3.1, rebounds: 0.8, assists: 0.3, fouls: 1.2, steals: 0.2, turnovers: 0.6, blocks: 0.2,avatar: "bek/img/ZENIT/Егор Рыжов.png", cost: 15 },
-    //   { name: "Денис Захаров", points: 2.3, rebounds: 0.7, assists: 0.3, fouls: 1.0, steals: 0.2, turnovers: 0.3, blocks: 0.0,avatar: "bek/img/ZENIT/Денис Захаров.png", cost:10 },
-    //   { name: "Томас Эртель", points: 13.0, rebounds: 2.2, assists: 8.1, fouls: 2.2, steals: 1.0, turnovers: 3.1, blocks: 0.0,avatar: "bek/img/ZENIT/Томас Эртель.png", cost: 55 },
-    //   { name: "Калеб Хоумсли", points: 11.2, rebounds: 2.9, assists: 1.9, fouls: 2.2, steals: 0.7, turnovers: 1.1, blocks: 0.3,avatar: "bek/img/ZENIT/Калеб Хоумсли.png", cost: 50 },
-    //   { name: "Джордан Мики", points: 13.3, rebounds: 4.7, assists: 1.7, fouls: 2.4, steals: 1.0, turnovers: 1.5, blocks: 0.6,avatar: "bek/img/ZENIT/Джордан Мики.png", cost: 50 },
-    //   { name: "Билли Бэрон", points: 14.1, rebounds: 1.5, assists: 2.3, fouls: 1.8, steals: 0.6, turnovers: 1.2, blocks: 0.0,avatar: "bek/img/ZENIT/Билли Бэрон.png", cost: 50 },
-    //   { name: "Кевин Пангос", points: 12.5, rebounds: 1.8, assists: 6.8, fouls: 2.3, steals: 0.7, turnovers: 2.3, blocks: 0.0,avatar: "bek/img/ZENIT/Кевин Пангос.png", pcost: 50 },
-    //   { name: "Джош Карлтон", points: 4.7, rebounds: 0.8, assists: 0.1, fouls: 1.3, steals: 0.1, turnovers: 1.3, blocks: 0.6,avatar: "bek/img/ZENIT/Джош Карлтон.png", cost:15 },
-    //   { name: "Сергей Моня", points: 1.3, rebounds: 1.2, assists: 0.2, fouls: 0.2, steals: 0.2, turnovers: 0.2, blocks: 0.0,avatar: "bek/img/ZENIT/Сергей Моня.png", cost: 10 },
+    //   +{ name: "Дуэйн Бэйкон", points: 17.6, rebounds: 3.2, assists: 2.2, fouls: 2.7, steals: 0.7, turnovers: 2.0, blocks: 0.2,avatar: "/img/ZENIT/Дуэйн Бэйкон.png", cost: 70 },
+    //   +{ name: "Ксавьер Мун", points: 13.5, rebounds: 3.3, assists: 5.0, fouls: 1.9, steals: 1.2, turnovers: 2.2, blocks: 0.5,avatar: "/img/ZENIT/Ксавьер Мун.png", cost: 55 },
+    //   +{ name: "Трент Фрейзер", points: 11.9, rebounds: 1.9, assists: 4.2, fouls: 2.3, steals: 0.9, turnovers: 1.8, blocks: 0.1,avatar: "/img/ZENIT/Трент Фрейзер.png", cost: 50 },
+    //   +{ name: "Алекс Пойтресс", points: 9.8, rebounds: 3.1, assists: 0.4, fouls: 2.5, steals: 0.7, turnovers: 0.9, blocks: 0.9,avatar: "/img/ZENIT/Алекс Пойтресс.png", cost: 45 },
+    //   +{ name: "Алексей Швед", points: 9.0, rebounds: 1.8, assists: 5.1, fouls: 1.7, steals: 0.5, turnovers: 1.8, blocks: 0.3,avatar: "/img/ZENIT/Алексей Швед.png", cost: 45 },
+    //   +{ name: "Винс Хантер", points: 8.4, rebounds: 3.5, assists: 1.1, fouls: 2.6, steals: 1.1, turnovers: 0.9, blocks: 0.9,avatar: "/img/ZENIT/Винс Хантер.png", cost: 45 },
+    //   +{ name: "Окаро Уайт", points: 7.7, rebounds: 2.6, assists: 0.9, fouls: 2.6, steals: 0.7, turnovers: 0.6, blocks: 0.2,avatar: "/img/ZENIT/Окаро Уайт.png", cost: 40 },
+    //   +{ name: "Георгий Жбанов", points: 6.9, rebounds: 2.0, assists: 1.2, fouls: 2.3, steals: 1.3, turnovers: 0.6, blocks: 0.3,avatar: "/img/ZENIT/Георгий Жбанов.png", cost:35 },
+    //   +{ name: "Сергей Карасев", points: 5.8, rebounds: 2.2, assists: 1.4, fouls: 2.1, steals: 1.0, turnovers: 0.3, blocks: 0.3,avatar: "/img/ZENIT/.png", cost: 30 },
+    //   +{ name: "Андрей Воронцевич", points: 5.1, rebounds: 2.5, assists: 1.2, fouls: 1.7, steals: 0.6, turnovers: 0.4, blocks: 0.4,avatar: "/img/ZENIT/Сергей Карасев.png", cost: 30 },
+    //   +{ name: "Александр Щербенев", points: 3.8, rebounds: 0.8, assists: 1.8, fouls: 1.0, steals: 0.4, turnovers: 0.7, blocks: 0.0,avatar: "/img/ZENIT/Александр Щербенев.png", cost: 20 },
+    //   +{ name: "Егор Рыжов", points: 3.1, rebounds: 0.8, assists: 0.3, fouls: 1.2, steals: 0.2, turnovers: 0.6, blocks: 0.2,avatar: "/img/ZENIT/Егор Рыжов.png", cost: 15 },
+    //   +{ name: "Денис Захаров", points: 2.3, rebounds: 0.7, assists: 0.3, fouls: 1.0, steals: 0.2, turnovers: 0.3, blocks: 0.0,avatar: "/img/ZENIT/Денис Захаров.png", cost:10 },
+    //   +{ name: "Томас Эртель", points: 13.0, rebounds: 2.2, assists: 8.1, fouls: 2.2, steals: 1.0, turnovers: 3.1, blocks: 0.0,avatar: "/img/ZENIT/Томас Эртель.png", cost: 55 },
+    //   +{ name: "Калеб Хоумсли", points: 11.2, rebounds: 2.9, assists: 1.9, fouls: 2.2, steals: 0.7, turnovers: 1.1, blocks: 0.3,avatar: "/img/ZENIT/Калеб Хоумсли.png", cost: 50 },
+    //   +{ name: "Джордан Мики", points: 13.3, rebounds: 4.7, assists: 1.7, fouls: 2.4, steals: 1.0, turnovers: 1.5, blocks: 0.6,avatar: "/img/ZENIT/Джордан Мики.png", cost: 50 },
+    //   +{ name: "Билли Бэрон", points: 14.1, rebounds: 1.5, assists: 2.3, fouls: 1.8, steals: 0.6, turnovers: 1.2, blocks: 0.0,avatar: "/img/ZENIT/Билли Бэрон.png", cost: 50 },
+    //   { name: "Кевин Пангос", points: 12.5, rebounds: 1.8, assists: 6.8, fouls: 2.3, steals: 0.7, turnovers: 2.3, blocks: 0.0,avatar: "/img/ZENIT/Кевин Пангос.png", pcost: 50 },
+    //   +{ name: "Джош Карлтон", points: 4.7, rebounds: 0.8, assists: 0.1, fouls: 1.3, steals: 0.1, turnovers: 1.3, blocks: 0.6,avatar: "/img/ZENIT/Джош Карлтон.png", cost:15 },
+    //   +{ name: "Сергей Моня", points: 1.3, rebounds: 1.2, assists: 0.2, fouls: 0.2, steals: 0.2, turnovers: 0.2, blocks: 0.0,avatar: "/img/ZENIT/Сергей Моня.png", cost: 10 },
     // ];
 
     //ПОМЕНЯТЬ НАЗВАНИЯ СТАТИСТИКИ !!
@@ -419,7 +419,7 @@ async function seedDatabase() {
 
       // ZENIT
       {
-        name: "Дуэйн Бэйкон",
+        name: "Дуэйн Бэйкон", //+
         position: "SF", // Лёгкий форвард
         points: 17.6,
         rebounds: 3.2,
@@ -441,7 +441,7 @@ async function seedDatabase() {
         steals: 1.2,
         turnovers: 2.2,
         blocks: 0.5,
-        avatar: "bek/img/ZENIT/Ксавьер Мун.png",
+        avatar: "/img/ZENIT/Ксавьер Мун.png",
         cost: 55,
       },
       {
@@ -454,11 +454,11 @@ async function seedDatabase() {
         steals: 0.9,
         turnovers: 1.8,
         blocks: 0.1,
-        avatar: "bek/img/ZENIT/Трент Фрейзер.png",
+        avatar: "/img/ZENIT/Трент Фрейзер.png",
         cost: 50,
       },
       {
-        name: "Алекс Пойтресс",
+        name: "Алекс Пойтресс", //+
         position: "PF", // Тяжёлый форвард
         points: 9.8,
         rebounds: 3.1,
@@ -467,11 +467,11 @@ async function seedDatabase() {
         steals: 0.7,
         turnovers: 0.9,
         blocks: 0.9,
-        avatar: "bek/img/ZENIT/Алекс Пойтресс.png",
+        avatar: "/img/ZENIT/Алекс Пойтресс.png",
         cost: 45,
       },
       {
-        name: "Алексей Швед",
+        name: "Алексей Швед", //+
         position: "SG", // Атакующий защитник
         points: 9.0,
         rebounds: 1.8,
@@ -480,11 +480,11 @@ async function seedDatabase() {
         steals: 0.5,
         turnovers: 1.8,
         blocks: 0.3,
-        avatar: "bek/img/ZENIT/Алексей Швед.png",
+        avatar: "/img/ZENIT/Алексей Швед.png",
         cost: 45,
       },
       {
-        name: "Винс Хантер",
+        name: "Винс Хантер", //+
         position: "C", // Центровой
         points: 8.4,
         rebounds: 3.5,
@@ -493,11 +493,11 @@ async function seedDatabase() {
         steals: 1.1,
         turnovers: 0.9,
         blocks: 0.9,
-        avatar: "bek/img/ZENIT/Винс Хантер.png",
+        avatar: "/img/ZENIT/Винс Хантер.png",
         cost: 45,
       },
       {
-        name: "Окаро Уайт",
+        name: "Окаро Уайт", //+
         position: "PF", // Тяжёлый форвард
         points: 7.7,
         rebounds: 2.6,
@@ -506,11 +506,11 @@ async function seedDatabase() {
         steals: 0.7,
         turnovers: 0.6,
         blocks: 0.2,
-        avatar: "bek/img/ZENIT/Окаро Уайт.png",
+        avatar: "/img/ZENIT/Окаро Уайт.png",
         cost: 40,
       },
       {
-        name: "Георгий Жбанов",
+        name: "Георгий Жбанов", //+
         position: "SG", // Атакующий защитник
         points: 6.9,
         rebounds: 2.0,
@@ -519,7 +519,7 @@ async function seedDatabase() {
         steals: 1.3,
         turnovers: 0.6,
         blocks: 0.3,
-        avatar: "bek/img/ZENIT/Георгий Жбанов.png",
+        avatar: "/img/ZENIT/Георгий Жбанов.png",
         cost: 35,
       },
       {
@@ -532,11 +532,11 @@ async function seedDatabase() {
         steals: 1.0,
         turnovers: 0.3,
         blocks: 0.3,
-        avatar: "bek/img/ZENIT/.png",
+        avatar: "/img/ZENIT/.png",
         cost: 30,
       },
       {
-        name: "Андрей Воронцевич",
+        name: "Андрей Воронцевич", //+
         position: "PF", // Тяжёлый форвард
         points: 5.1,
         rebounds: 2.5,
@@ -545,11 +545,11 @@ async function seedDatabase() {
         steals: 0.6,
         turnovers: 0.4,
         blocks: 0.4,
-        avatar: "bek/img/ZENIT/Сергей Карасев.png",
+        avatar: "/img/ZENIT/Сергей Карасев.png",
         cost: 30,
       },
       {
-        name: "Александр Щербенев",
+        name: "Александр Щербенев", //+
         position: "PG", // Разыгрывающий защитник
         points: 3.8,
         rebounds: 0.8,
@@ -558,7 +558,7 @@ async function seedDatabase() {
         steals: 0.4,
         turnovers: 0.7,
         blocks: 0.0,
-        avatar: "bek/img/ZENIT/Александр Щербенев.png",
+        avatar: "/img/ZENIT/Александр Щербенев.png",
         cost: 20,
       },
       {
@@ -571,11 +571,11 @@ async function seedDatabase() {
         steals: 0.2,
         turnovers: 0.6,
         blocks: 0.2,
-        avatar: "bek/img/ZENIT/Егор Рыжов.png",
+        avatar: "/img/ZENIT/Егор Рыжов.png",
         cost: 15,
       },
       {
-        name: "Денис Захаров",
+        name: "Денис Захаров", //+
         position: "PG", // Разыгрывающий защитник
         points: 2.3,
         rebounds: 0.7,
@@ -584,7 +584,7 @@ async function seedDatabase() {
         steals: 0.2,
         turnovers: 0.3,
         blocks: 0.0,
-        avatar: "bek/img/ZENIT/Денис Захаров.png",
+        avatar: "/img/ZENIT/Денис Захаров.png",
         cost: 10,
       },
       {
@@ -597,7 +597,7 @@ async function seedDatabase() {
         steals: 1.0,
         turnovers: 3.1,
         blocks: 0.0,
-        avatar: "bek/img/ZENIT/Томас Эртель.png",
+        avatar: "/img/ZENIT/Томас Эртель.png",
         cost: 55,
       },
       {
@@ -610,11 +610,11 @@ async function seedDatabase() {
         steals: 0.7,
         turnovers: 1.1,
         blocks: 0.3,
-        avatar: "bek/img/ZENIT/Калеб Хоумсли.png",
+        avatar: "/img/ZENIT/Калеб Хоумсли.png",
         cost: 50,
       },
       {
-        name: "Джордан Мики",
+        name: "Джордан Мики", //+
         position: "PF", // Тяжёлый форвард
         points: 13.3,
         rebounds: 4.7,
@@ -623,11 +623,11 @@ async function seedDatabase() {
         steals: 1.0,
         turnovers: 1.5,
         blocks: 0.6,
-        avatar: "bek/img/ZENIT/Джордан Мики.png",
+        avatar: "/img/ZENIT/Джордан Мики.png",
         cost: 50,
       },
       {
-        name: "Билли Бэрон",
+        name: "Билли Бэрон", //+
         position: "SG", // Атакующий защитник
         points: 14.1,
         rebounds: 1.5,
@@ -636,7 +636,7 @@ async function seedDatabase() {
         steals: 0.6,
         turnovers: 1.2,
         blocks: 0.0,
-        avatar: "bek/img/ZENIT/Билли Бэрон.png",
+        avatar: "/img/ZENIT/Билли Бэрон.png",
         cost: 50,
       },
       {
@@ -649,7 +649,7 @@ async function seedDatabase() {
         steals: 0.7,
         turnovers: 2.3,
         blocks: 0.0,
-        avatar: "bek/img/ZENIT/Кевин Пангос.png",
+        avatar: "/img/ZENIT/Кевин Пангос.png",
         cost: 50,
       },
       {
@@ -662,7 +662,7 @@ async function seedDatabase() {
         steals: 0.1,
         turnovers: 1.3,
         blocks: 0.6,
-        avatar: "bek/img/ZENIT/Джош Карлтон.png",
+        avatar: "/img/ZENIT/Джош Карлтон.png",
         cost: 15,
       },
       {
@@ -675,13 +675,13 @@ async function seedDatabase() {
         steals: 0.2,
         turnovers: 0.2,
         blocks: 0.0,
-        avatar: "bek/img/ZENIT/Сергей Моня.png",
+        avatar: "/img/ZENIT/Сергей Моня.png",
         cost: 10,
       },
       // LOKO
 
       {
-        name: "Патрик Миллер",
+        name: "Патрик Миллер", //+
         position: "PG",
         points: 15.9,
         rebounds: 3.4,
@@ -694,7 +694,7 @@ async function seedDatabase() {
         cost: 70,
       },
       {
-        name: "Антониус Кливленд",
+        name: "Антониус Кливленд", //+
         position: "SG/SF",
         points: 14.0,
         rebounds: 4.3,
@@ -707,7 +707,7 @@ async function seedDatabase() {
         cost: 65,
       },
       {
-        name: "Би Джей Джонсон",
+        name: "Би Джей Джонсон", //+
         position: "SF",
         points: 12.5,
         rebounds: 3.8,
@@ -720,7 +720,7 @@ async function seedDatabase() {
         cost: 60,
       },
       {
-        name: "Таджер Макколл",
+        name: "Таджер Макколл", //+
         position: "SG",
         points: 10.3,
         rebounds: 2.4,
@@ -733,7 +733,7 @@ async function seedDatabase() {
         cost: 50,
       },
       {
-        name: "Карвел Андерсон",
+        name: "Карвел Андерсон", //+
         position: "SG",
         points: 8.3,
         rebounds: 2.2,
@@ -746,7 +746,7 @@ async function seedDatabase() {
         cost: 40,
       },
       {
-        name: "Айзейя Уэйли",
+        name: "Айзейя Уэйли", //+
         position: "PF",
         points: 8.1,
         rebounds: 5.2,
@@ -759,7 +759,7 @@ async function seedDatabase() {
         cost: 45,
       },
       {
-        name: "Андрей Мартюк",
+        name: "Андрей Мартюк", //+
         position: "PF/C",
         points: 8.1,
         rebounds: 4.9,
@@ -768,11 +768,11 @@ async function seedDatabase() {
         steals: 0.4,
         turnovers: 1.0,
         blocks: 0.6,
-        avatar: "/img/LOKO/Андрей Мартюк.png",
+        avatar: "/img/LOKO/Андрей Мартюк.png", //+
         cost: 45,
       },
       {
-        name: "Кирилл Елатонцев",
+        name: "Кирилл Елатонцев", //+
         position: "C",
         points: 7.2,
         rebounds: 4.6,
@@ -785,7 +785,7 @@ async function seedDatabase() {
         cost: 40,
       },
       {
-        name: "Владислав Емченко",
+        name: "Владислав Емченко", //+
         position: "PG",
         points: 6.3,
         rebounds: 1.8,
@@ -798,7 +798,7 @@ async function seedDatabase() {
         cost: 35,
       },
       {
-        name: "Александр Гудумак",
+        name: "Александр Гудумак", //+
         position: "PF",
         points: 5.7,
         rebounds: 1.8,
@@ -811,7 +811,7 @@ async function seedDatabase() {
         cost: 35,
       },
       {
-        name: "Кирилл Темиров",
+        name: "Кирилл Темиров", //+
         position: "SG",
         points: 5.6,
         rebounds: 1.7,
@@ -824,7 +824,7 @@ async function seedDatabase() {
         cost: 35,
       },
       {
-        name: "Антон Квитковских",
+        name: "Антон Квитковских", //+
         position: "PF",
         points: 4.6,
         rebounds: 2.7,
@@ -837,7 +837,7 @@ async function seedDatabase() {
         cost: 30,
       },
       {
-        name: "Михаил Ведищев",
+        name: "Михаил Ведищев", //+
         position: "PG",
         points: 4.3,
         rebounds: 0.9,
@@ -850,7 +850,7 @@ async function seedDatabase() {
         cost: 25,
       },
       {
-        name: "Джон Дженкинс",
+        name: "Джон Дженкинс", //+
         position: "SG",
         points: 4.1,
         rebounds: 1.1,
@@ -863,7 +863,7 @@ async function seedDatabase() {
         cost: 25,
       },
       {
-        name: "Данил Шеянов",
+        name: "Данил Шеянов", //+
         position: "SF",
         points: 3.8,
         rebounds: 1.6,
@@ -876,7 +876,7 @@ async function seedDatabase() {
         cost: 20,
       },
       {
-        name: "Всеволод Ищенко",
+        name: "Всеволод Ищенко", //+
         position: "PG",
         points: 3.2,
         rebounds: 1.5,
@@ -889,7 +889,7 @@ async function seedDatabase() {
         cost: 20,
       },
       {
-        name: "Дмитрий Узинский",
+        name: "Дмитрий Узинский", //+
         position: "PF",
         points: 3.2,
         rebounds: 1.8,
@@ -902,7 +902,7 @@ async function seedDatabase() {
         cost: 20,
       },
       {
-        name: "Даниил Коско",
+        name: "Даниил Коско", //+
         position: "PG",
         points: 1.2,
         rebounds: 0.5,

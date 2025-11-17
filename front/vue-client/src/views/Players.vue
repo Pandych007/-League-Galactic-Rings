@@ -5,6 +5,48 @@
 
       <div class="players-stats">Найдено игроков: {{ totalPlayers }}</div>
     </div>
+
+    <div v-if="selectedPlayersCount > 0" class="selction-panel">
+      <div class="selection-header">
+        <h3>Выбранные игроки ({{ selectedPlayersCount }}/7)</h3>
+        <div class="slection-actions">
+          <button @click="clearSelection" class="clear-btn">Очистить</button>
+          <button @click="createTeamWithSelected" class="create-team-btn">
+            Создать команду из выбранных
+          </button>
+        </div>
+      </div>
+      <div class="selected-players-list">
+        <div
+          v-for="player in selectedPlayers"
+          :key="player.id"
+          class="selected-player"
+        >
+          <div class="player-info">
+            <span class="player-name">{{ player.name }}</span>
+            <span class="player-position">{{ player.position }}</span>
+            <span class="player-cost">{{ player.cost }}</span>
+          </div>
+          <button @click="removeFromSelection(player)" class="remove-btn">
+            x
+          </button>
+        </div>
+      </div>
+      <div class="selection-stats">
+        <div class="stat">
+          <span>Общая стоимость:</span>
+          <span class="cost">{{ totalSelectionCost }}</span>
+        </div>
+        <div class="stat">
+          <span>Остаток бюджета:</span>
+          <span class="cost">{{ BUDGET_LIMIT - totalSelectionCost }}</span>
+        </div>
+        <div v-if="totalSelectionCost > BUDGET_LIMIT" class="budget-alert">
+          Превышен бюджет на {{ totalSelectionCost - BUDGET_LIMIT }}
+        </div>
+      </div>
+    </div>
+
     <div class="filters-panel">
       <div class="filters-grid">
         <div class="filter-group">
@@ -94,8 +136,12 @@ import { useAuthStore } from "../stores/auth";
 import { storeToRefs } from "pinia";
 import PlayerCard from "../components/PlayerCard.vue";
 import api from "../services/api";
+import { useRouter } from "vue-router";
+
+const BUDGET_LIMIT = 200;
 
 const authStore = useAuthStore();
+const router = useRouter();
 const { isAuthenticated } = storeToRefs(authStore);
 
 const players = ref([]);
@@ -105,6 +151,12 @@ const totalPages = ref(1);
 const totalPlayers = ref(0);
 const itemsPerPage = ref(12);
 
+const selectedPlayers = ref([]);
+const addingPlayers = ref(new Set());
+const showTeamCreationModal = ref(false);
+const creatingTeam = ref(false);
+const newTeamName = ref("");
+
 const filters = ref({
   position: "",
   search: "",
@@ -112,6 +164,22 @@ const filters = ref({
 
 const hasActiveFilters = computed(() => {
   return filters.value.position !== "" || filters.value.search !== "";
+});
+
+const selectedPlayersCount = computed(() => selectedPlayers.value.length);
+const totalSelectionCost = computed(() => {
+  return selectedPlayers.value.reduce(
+    (sum, player) => sum + parseFloat(player.cost || 0),
+    0
+  );
+});
+const canCreateTeam = computed(() => {
+  return (
+    newTeamName.value.trim() &&
+    selectedPlayersCount.value > 0 &&
+    selectedPlayersCount.value <= 7 &&
+    totalSelectionCost.value <= BUDGET_LIMIT
+  );
 });
 
 let searchTimeout = null;
@@ -148,7 +216,6 @@ const loadPlayers = async () => {
         delete params[key];
       }
     });
-    console.log(params);
     const response = await api.get("/players", { params });
 
     const data = response.data;
@@ -170,8 +237,55 @@ const changePage = (page) => {
   loadPlayers();
 };
 
-const addToTeam = () => {
-  console.log("add to team");
+const addToTeam = async (player) => {
+  if (isPlayerSelected(player)) {
+    removeFromSelection(player);
+    return;
+  }
+
+  if (selectedPlayersCount.value > 7) {
+    alert("Error");
+    return;
+  }
+
+  if (totalSelectionCost.value + parseFloat(player.cost) > BUDGET_LIMIT) {
+    alert("Error");
+    return;
+  }
+  addingPlayers.value.add(player.id);
+  setTimeout(() => {
+    selectedPlayers.value.push(player);
+    addingPlayers.value.delete(player.id);
+  }, 300);
+};
+
+const removeFromSelection = (player) => {
+  selectedPlayers.value = selectedPlayers.value.filter(
+    (p) => p.id !== player.id
+  );
+};
+
+const clearSelection = () => {
+  selectedPlayers.value = [];
+};
+
+const isPlayerSelected = (player) => {
+  return selectedPlayers.value.some((p) => p.id === player.id);
+};
+
+const createTeamWithSelected = () => {
+  if (selectedPlayersCount.value === 0) {
+    alert("Error");
+    return;
+  }
+  showTeamCreationModal.value = true;
+};
+
+const closeTeamCretionModal = () => {
+  if (!canCreateTeam.value) return;
+
+  creatingTeam.value = true;
+  //доделать api запрос на создания команды
 };
 
 const resetFilters = () => {
@@ -352,5 +466,70 @@ watch(currentPage, loadPlayers);
   color: #fff;
   background: #3498db;
   cursor: not-allowed;
+}
+
+.selction-panel {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+.selection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.selection-header h3 {
+  margin: 0;
+  color: #fff;
+}
+.selection-actions {
+  display: flex;
+  gap: 10px;
+}
+.clear-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.clear-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.create-team-btn {
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+.create-team-btn:hover {
+  background: #219a52;
+}
+.selected-players-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.selected-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
 }
 </style>
