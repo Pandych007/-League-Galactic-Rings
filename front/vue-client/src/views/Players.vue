@@ -5,7 +5,6 @@
 
       <div class="players-stats">Найдено игроков: {{ totalPlayers }}</div>
     </div>
-
     <div v-if="selectedPlayersCount > 0" class="selction-panel">
       <div class="selection-header">
         <h3>Выбранные игроки ({{ selectedPlayersCount }}/7)</h3>
@@ -128,6 +127,70 @@
         Вперед
       </button>
     </div>
+    <div v-if="showTeamCreationModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Создание команды</h3>
+          <button class="close-btn">x</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Название команды: </label>
+            <input
+              v-model="newTeamName"
+              type="text"
+              placeholder="Введите название команды"
+              class="team-name-input"
+            />
+          </div>
+          <div class="selected-summary">
+            <h4>Выбранные игроки ({{ selectedPlayersCount }})</h4>
+            <div class="players-preview">
+              <div v-for="player in selectedPlayers" :key="player.id">
+                <span>{{ player.name }}</span>
+                <span class="position">{{ player.position }}</span>
+                <span class="cost"
+                  ><!-- добавить иконку -->{{ player.cost }}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="budget-info">
+            <div class="budget-item">
+              <span>Общая стоимость: </span>
+              <span>{{ totalSelectionCost }}</span>
+            </div>
+            <div class="budget-item">
+              <span>Бюджет: </span>
+              <span>{{ BUDGET_LIMIT }}</span>
+            </div>
+            <div
+              class="budget-item"
+              :class="{ error: totalSelectionCost > BUDGET_LIMIT }"
+            >
+              <span>Остаток: </span>
+              <span>{{ BUDGET_LIMIT - totalSelectionCost }}</span>
+            </div>
+          </div>
+
+          <div v-if="totalSelectionCost > BUDGET_LIMIT" class="error-message">
+            Превышен бюджет
+          </div>
+          <div class="modal-actions">
+            <button @click="closeTeamCretionModal" class="cancel-btn">
+              Отмена
+            </button>
+            <button
+              @click="createTeam"
+              :disabled="!canCreateTeam || creatingTeam"
+              class="create-btn"
+            >
+              {{ creatingTeam ? "Создание..." : "Создать команду" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -138,7 +201,7 @@ import PlayerCard from "../components/PlayerCard.vue";
 import api from "../services/api";
 import { useRouter } from "vue-router";
 
-const BUDGET_LIMIT = 200;
+const BUDGET_LIMIT = 300;
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -149,7 +212,7 @@ const loading = ref(false);
 const currentPage = ref(1);
 const totalPages = ref(1);
 const totalPlayers = ref(0);
-const itemsPerPage = ref(12);
+const itemsPerPage = ref(15);
 
 const selectedPlayers = ref([]);
 const addingPlayers = ref(new Set());
@@ -312,6 +375,27 @@ const getPositionLabel = (position) => {
     C: "Center",
   };
   return positions[position] || position;
+};
+
+const createTeam = async () => {
+  if (!canCreateTeam.value) return;
+
+  creatingTeam.value = true;
+  try {
+    const teamData = {
+      name: newTeamName.value,
+      playerIds: selectedPlayers.value.map((player) => player.id),
+    };
+    const response = await api.post("/team", teamData);
+    selectedPlayers.value = [];
+    closeTeamCretionModal();
+    alert(`Команда "${response.data.team.name}" успешно создана!"`);
+    router.push("/team");
+  } catch (error) {
+    console.error(error);
+  } finally {
+    creatingTeam.value = false;
+  }
 };
 
 onMounted(() => {
@@ -531,5 +615,140 @@ watch(currentPage, loadPlayers);
   padding: 8px 10px;
   border-radius: 8px;
   backdrop-filter: blur(10px);
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+}
+.modal-content {
+  background: #4b0082;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #e1e8ed;
+}
+.modal-header h3 {
+  margin: 0;
+  color: #fff;
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+.close-btn:hover {
+  background: #f8f9fa;
+}
+.modal-body {
+  padding: 15px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #fff;
+}
+.team-name-input {
+  width: 98%;
+  padding: 7px;
+  border: 2px solid #e1e8ed;
+  border-radius: 6px;
+  font-size: 10px;
+  transition: border-color 0.3s;
+}
+.selected-summary {
+  margin-bottom: 15px;
+}
+.selected-summary h4 {
+  margin-bottom: 10px;
+}
+.players-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.player-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+  border-radius: 6px;
+}
+.cost {
+  font-weight: 600;
+  color: #27ae60;
+}
+.error-message {
+  background: #e74c3c;
+  color: #fff;
+  padding: 7px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px;
+}
+.cancel-btn {
+  background: #95a5a6;
+  color: #fff;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.cancel-btn:hover {
+  background: #7f8c8d;
+}
+.create-btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.create-btn:hover:not(:disabled) {
+  background: #2980b9;
+}
+.create-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
 }
 </style>

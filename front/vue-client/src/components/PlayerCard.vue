@@ -54,6 +54,7 @@
       >
         {{ isAdd ? "Добавляется..." : "Добавить" }}
       </button>
+      <span v-else-if="isInTeam" class="in-team">В команде</span>
     </div>
   </div>
 </template>
