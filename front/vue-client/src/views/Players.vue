@@ -82,7 +82,7 @@
       <div v-if="hasActiveFilters" class="active-filters">
         <span class="active-filters-label">Активные фильтры</span>
         <div v-if="filters.position" class="filter-tag">
-          Позиция {{ getPositionLabel("position") }}
+          {{ getPositionLabel("position") }}
           <button @click="removeFilter('position')" class="remove-filter">
             x
           </button>
@@ -104,6 +104,8 @@
         :key="player.id"
         :player="player"
         :show-add-button="isAuthenticated"
+        :is-in-team="isPlayerSelected(player)"
+        :is-adding="addingPlayers.has(player.id)"
         @add-to-team="addToTeam"
       />
     </div>
@@ -131,7 +133,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3>Создание команды</h3>
-          <button class="close-btn">x</button>
+          <button @click="closeTeamCretionModal" class="close-btn">x</button>
         </div>
         <div class="modal-body">
           <div class="form-group">
@@ -149,9 +151,17 @@
               <div v-for="player in selectedPlayers" :key="player.id">
                 <span>{{ player.name }}</span>
                 <span class="position">{{ player.position }}</span>
-                <span class="cost"
-                  ><!-- добавить иконку -->{{ player.cost }}</span
-                >
+                <span class="cost">
+                  <div class="d-flex">
+                    <div>{{ player.cost }}</div>
+                    <div>
+                      <img
+                        width="20px"
+                        height="20px"
+                        src="http://localhost:3000/img/basket-coin.png"
+                      />
+                    </div></div
+                ></span>
               </div>
             </div>
           </div>
@@ -345,10 +355,11 @@ const createTeamWithSelected = () => {
 };
 
 const closeTeamCretionModal = () => {
-  if (!canCreateTeam.value) return;
-
-  creatingTeam.value = true;
+  //if (!canCreateTeam.value) return;
+  //creatingTeam.value = true;
   //доделать api запрос на создания команды
+  showTeamCreationModal.value = false;
+  newTeamName.value = "";
 };
 
 const resetFilters = () => {
@@ -443,6 +454,14 @@ watch(currentPage, loadPlayers);
   border: 2px solid #eee;
   border-radius: 8px;
   transition: border-color 0.3s;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.d-flex div {
+  height: 25px;
 }
 .filter-group select:focus,
 .filter-group input:focus {
@@ -750,5 +769,10 @@ watch(currentPage, loadPlayers);
 .create-btn:disabled {
   background: #bdc3c7;
   cursor: not-allowed;
+}
+.slection-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 </style>

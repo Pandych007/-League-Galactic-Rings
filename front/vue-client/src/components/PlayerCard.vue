@@ -45,7 +45,18 @@
       </div> -->
     </div>
     <div class="player-footer">
-      <span class="cost">{{ player.cost }}</span>
+      <span class="cost">
+        <div class="d-flex">
+          <div>{{ player.cost }}</div>
+          <div>
+            <img
+              width="20px"
+              height="20px"
+              src="http://localhost:3000/img/basket-coin.png"
+            />
+          </div>
+        </div>
+      </span>
       <button
         v-if="isAuthenticated && !isInTeam && showAddButton"
         @click="$emit('add-to-team', player)"
@@ -157,5 +168,13 @@ const positionClass = computed(() => {
 .add-btn:disabled {
   background: #bdc3c7;
   cursor: not-allowed;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.d-flex div {
+  height: 25px;
 }
 </style>
